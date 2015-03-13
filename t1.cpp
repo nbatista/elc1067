@@ -16,5 +16,9 @@ int main (void)
 		printf("Não foi possível abrir arquivo de entrada.\n");
 		return 1;
 	}
+		while (fgets(linha,100,fp) != NULL) {
+			printf(" %s\n", linha);	
+		}
+		fclose(fp);
 		return 0;
 	}
