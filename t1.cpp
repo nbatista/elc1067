@@ -2,7 +2,7 @@
 #include <string.h> 
 int main (void)
 {
-	int n = 0,size;
+	int n = 0,size,i;
 	int achou = 0;
 	char nome[100], nome1[100]; 
 	char linha[100];
@@ -20,10 +20,7 @@ int main (void)
 			if (strstr(linha,nome) != NULL) {
 				achou = 1;
 				if (achou){	
-				size=strlen(linha);
-				printf(" %s    o nume de caracteres  %d\n", linha,size-1);	
-
-				
+			
 				float nota1, nota2;
 				FILE *arq;
 				arq = fopen("notas.txt", "r");
@@ -33,7 +30,9 @@ int main (void)
 					while( (fscanf(arq,"%s %f %f \n", nome1, &nota1, &nota2))!=EOF )
 						if (strstr(linha,nome1) != NULL) {
 							if (achou){
-								printf("\n\n  %.2f      ",  (nota1+nota2)/2);								
+								printf("\n\n  %.2f      ",  (nota1+nota2)/2);
+									for(i=9;i<10;i++)
+									printf(" %s\n", &linha[i]);								
 								}
 						
 						}
