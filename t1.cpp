@@ -17,7 +17,13 @@ int main (void)
 		return 1;
 	}
 		while (fgets(linha,100,fp) != NULL) {
-			printf(" %s\n", linha);	
+			if (strstr(linha,nome) != NULL) {
+				achou = 1;
+				if (achou){	
+				printf(" %s\n", linha);									
+				}	
+			}
+			
 		}
 		fclose(fp);
 		return 0;
