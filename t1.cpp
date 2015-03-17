@@ -2,7 +2,7 @@
 #include <string.h> 
 int main (void)
 {
-	int n = 0,size,i;
+	int i;
 	int achou = 0;
 	char nome[100], nome1[100]; 
 	char linha[100];
