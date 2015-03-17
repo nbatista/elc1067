@@ -20,7 +20,9 @@ int main (void)
 			if (strstr(linha,nome) != NULL) {
 				achou = 1;
 				if (achou){	
-				printf(" %s\n", linha);	
+				size=strlen(linha);
+				printf(" %s    o nume de caracteres  %d\n", linha,size-1);	
+
 				
 				float nota1, nota2;
 				FILE *arq;
@@ -32,7 +34,7 @@ int main (void)
 						if (strstr(linha,nome1) != NULL) {
 							if (achou){
 								printf("\n\n  %.2f      ",  (nota1+nota2)/2);								
-							}
+								}
 						
 						}
 								
