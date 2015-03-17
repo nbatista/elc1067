@@ -20,7 +20,22 @@ int main (void)
 			if (strstr(linha,nome) != NULL) {
 				achou = 1;
 				if (achou){	
-				printf(" %s\n", linha);									
+				printf(" %s\n", linha);	
+				
+				float nota1, nota2;
+				FILE *arq;
+				arq = fopen("notas.txt", "r");
+				if(arq == NULL)
+					printf("Erro, nao foi possivel abrir o arquivo\n");
+				else
+					while( (fscanf(arq,"%s %f %f \n", nome1, &nota1, &nota2))!=EOF )
+						if (strstr(linha,nome1) != NULL) {
+							if (achou){
+								printf("\n\n  %.2f      ",  (nota1+nota2)/2);								
+							}
+						
+						}
+								
 				}	
 			}
 			
