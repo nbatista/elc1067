@@ -7,8 +7,11 @@ int main (int argc, char *argv[])
 	int achou = 0;
 	char *nome1; 
 	nome1 = (char*) malloc( 50 * sizeof(char)); 
-	char linha[50];
+	char *linha;
+	linha = (char*) malloc( 50 * sizeof(char)); 
 	FILE* fp; 
+	float nota1, nota2;
+	FILE *arq;
 
 
 	fp = fopen("alunos.txt","rt");
@@ -16,9 +19,6 @@ int main (int argc, char *argv[])
 		printf("Não foi possível abrir arquivo de entrada.\n");
 		return 1;
 	}
-	float nota1, nota2;
-	FILE *arq;
-	
 
 		while (fgets(linha,100,fp) != NULL) {
 			if (strstr(linha,argv[1]) != NULL) {
@@ -32,7 +32,7 @@ int main (int argc, char *argv[])
 						if (strstr(linha,nome1) != NULL) {
 							if (achou){
 								printf("\n\n  %.2f      ",  (nota1+nota2)/2);
-								printf(" %s\n", &linha);
+								printf(" %s\n", &linha[9]);
 							}	
 						}
 													
@@ -40,10 +40,7 @@ int main (int argc, char *argv[])
 						
 			}
 								
-		}
-
-
-		
+		}		
 		
 		fclose(fp);
 		fclose(arq);
