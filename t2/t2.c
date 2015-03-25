@@ -32,7 +32,8 @@ int main (int argc, char *argv[])
 						if (strstr(linha,nome1) != NULL) {
 							if (achou){
 								printf("\n\n  %.2f      ",  (nota1+nota2)/2);
-								printf(" %s\n", &linha[9]);
+								for(i=9;i<10;i++)
+								printf(" %s\n", &linha[i]);
 							}	
 						}
 													
