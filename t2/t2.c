@@ -31,7 +31,7 @@ int main (int argc, char *argv[])
 	arq = fopen("notas.txt", "r");
 	if(arq == NULL)
 		printf("Não foi possível abrir arquivo de entrada.\n");
-	else
+
 		while( (fscanf(arq,"%s %f %f \n", nome1, &nota1, &nota2))!=EOF )
 			if (strstr(linha,nome1) != NULL) {
 				if (achou){
