@@ -16,6 +16,12 @@ int main (int argc, char *argv[])
 		printf("Não foi possível abrir arquivo de entrada.\n");
 		return 1;
 	}
+	float nota1, nota2;
+	FILE *arq;
+	arq = fopen("notas.txt", "r");
+	if(arq == NULL)
+		printf("Não foi possível abrir arquivo de entrada.\n");
+
 		while (fgets(linha,100,fp) != NULL) {
 			if (strstr(linha,argv[1]) != NULL) {
 				achou = 1;
@@ -26,11 +32,7 @@ int main (int argc, char *argv[])
 			}
 								
 		}
-	float nota1, nota2;
-	FILE *arq;
-	arq = fopen("notas.txt", "r");
-	if(arq == NULL)
-		printf("Não foi possível abrir arquivo de entrada.\n");
+
 
 		while( (fscanf(arq,"%s %f %f \n", nome1, &nota1, &nota2))!=EOF )
 			if (strstr(linha,nome1) != NULL) {
