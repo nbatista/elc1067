@@ -61,20 +61,23 @@ int vetor_numelem(vetor_t *vet)
 
 void vetor_insere_carta(vetor_t *vet, int indice, carta c)
 {
+	n=indice;
 	vetor_insere_carta(vet->baralho , vet->n, c);
 	vet->n++;
 }
 
 carta vetor_remove_carta(vetor_t *vet, int indice)
 {
-	/* TODO aqui */
+	n=indice;
+	carta c = vetor_remove_carta(vet->baralho, vet>n-1);
 	vet->n--;
 	return NULL;
 }
 
 carta vetor_acessa_carta(vetor_t *vet, int indice)
 {
-	/* TODO aqui */
+	n=indice;
+	return vet->n;
 	return NULL;
 }
 
