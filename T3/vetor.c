@@ -43,7 +43,6 @@ struct vetor {
 vetor_t* vetor_cria(void)
 {
 	struct vetor *vet = (struct vetor*)memo_aloca(sizeof(struct vetor));
-	assert(vet != NULL);
 	vet->n = vetor_cria();
 	vet-> n = 0;
 	return vet;
@@ -51,7 +50,6 @@ vetor_t* vetor_cria(void)
 
 void vetor_destroi(vetor_t* vet)
 {
-	assert(vet != NULL);
 	vetor_destroi(vet->n);
 	memo_libera(vet);	
 }
