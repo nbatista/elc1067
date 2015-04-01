@@ -43,14 +43,14 @@ struct vetor {
 vetor_t* vetor_cria(void)
 {
 	struct vetor *vet = (struct vetor*)memo_aloca(sizeof(struct vetor));
-	vet->n = vetor_cria();
+	vet-> baralho = vetor_cria();
 	vet-> n = 0;
 	return vet;
 }
 
 void vetor_destroi(vetor_t* vet)
 {
-	vetor_destroi(vet->n);
+	vetor_destroi(vet->baralho);
 	memo_libera(vet);	
 }
 
@@ -61,7 +61,7 @@ int vetor_numelem(vetor_t *vet)
 
 void vetor_insere_carta(vetor_t *vet, int indice, carta c)
 {
-	/* TODO aqui */
+	vetor_insere_carta(vet->baralho , vet->n, c);
 	vet->n++;
 }
 
