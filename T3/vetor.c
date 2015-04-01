@@ -83,6 +83,8 @@ carta vetor_acessa_carta(vetor_t *vet, int indice)
 
 bool vetor_valido(vetor_t *vet)
 {
-	/* TODO aqui */
+	if ((vet != NULL) && (vet->baralho != NULL));
+	return  true;
+
 	return false;
 }
