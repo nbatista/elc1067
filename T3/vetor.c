@@ -51,7 +51,8 @@ vetor_t* vetor_cria(void)
 
 void vetor_destroi(vetor_t* vet)
 {
-	/* TODO aqui */
+	assert(vet != NULL);
+	vetor_destroi(vet->n);
 	memo_libera(vet);	
 }
 
