@@ -40,11 +40,17 @@ enum { nada, editando } estado;
 
 texto_t* texto_inicia(void)
 {
+	lista_t* lista;
+	lista = lst_cria(); 
+	char* palavra = (char*)memo_aloca(sizeof(char));
+	
 	texto_t* t = (texto_t*)memo_aloca(sizeof(texto_t));
 	tamanho_t tam = { 600, 400 };	/* tamanho da tela */
 	
 	tela_inicializa(&t->tela, tam, "Editor teste");
 	tela_limpa(&t->tela);
+	
+	fclose(arq); // insere elementos na lista, encerra o arquivo
 
 	t->nlin = 0;
 	t->lincur = 0;
@@ -208,6 +214,7 @@ void texto_move_esq(texto_t *txt)
 	/* ATENÇÃO: apenas exemplo. Mudar implementação */
 	txt->colcur--;
 }
+
 
 void texto_move_dir(texto_t *txt)
 {
