@@ -141,16 +141,16 @@ void texto_atualiza_tela(texto_t *txt)
 }
 
 // funÁ„o texto salva 
-void texto_salvar(texto_t *txt,char * nome_do_arquivo){
+void texto_salvar(texto_t *txt,char * nome){
 	for(;texto->ant != NULL;texto = texto->ant);
 	unsigned int i;
-	for(i = 0;nome_do_arquivo[i] != '\0';++i){
-		if(nome_do_arquivo[i] == '\n'){
-			nome_do_arquivo[i] = '\0';
+	for(i = 0;nome[i] != '\0';++i){
+		if(nome[i] == '\n'){
+			nome[i] = '\0';
 			break;
 		}
 	}
-	FILE * arquivo = fopen(nome_do_arquivo,"w");
+	FILE * arquivo = fopen(nome,"w");
 	if(arquivo == NULL){
 		return;
 	}
@@ -161,11 +161,21 @@ void texto_salvar(texto_t *txt,char * nome_do_arquivo){
 	fclose(arquivo);
 }
 
+void texto_apagar(texto_t *txt){
+	for(;texto->ant != NULL;texto = texto->ant);
+	texto = texto->pro;
+	for(;texto->pro != NULL;texto = texto->pro){
+		free(texto->ant);
+	}
+	free(texto->ant);
+	free(texto);
+}
+
 // fun~Á„o para sair e salvar 
 void sair(){
  endwin();
- texto_salvar(fluxo,"arquivo.txt");
- texto_apagar(fluxo);
+ texto_salvar(texto,"arquivo.txt");
+ texto_apagar(texto);
 }
 
 bool texto_processa_comandos(texto_t* txt)
@@ -181,8 +191,8 @@ bool texto_processa_comandos(texto_t* txt)
 	if( tecla == ALLEGRO_KEY_S && (modificador & ALLEGRO_KEYMOD_CTRL) ) {
 		printf("CTRL+S SALVAR e PARAR DE EDITAR\n");
 		// funÁ„o texto salva 
-		void texto_salvar(texto_t *txt,char * nome_do_arquivo);
-		/* muda estado na vari√°vel para n√£o editar */
+		void texto_salvar(texto,"arquivo.txt");
+		
 		estado = nada;
 	}
 	if( tecla == ALLEGRO_KEY_E && (modificador & ALLEGRO_KEYMOD_CTRL) ) {
