@@ -35,6 +35,9 @@
 
 int main(int argc, char **argv)
 {
+	argv[1] = "arquivo.txt";
+	FILE * f = fopen(argv[1], "r+");
+	if(f == NULL) f = fopen(argv[1], "w+");
 	texto_t* texto;
 	texto = texto_inicia();
 	
