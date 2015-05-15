@@ -221,21 +221,26 @@ bool texto_processa_comandos(texto_t* txt)
 
 void texto_move_esq(texto_t *txt)
 {
-	/* ATENÇÃO: apenas exemplo. Mudar implementação */
-	txt->colcur--;
+if(txt->colcur>0) txt->colcur--;
+    else if(txt->lincur>0){
+        txt->lincur--;
+        txt->colcur = strlen(lista_busca(txt->linhas,txt->lincur+1)->linha);
+    }else return;
 }
 
 
 void texto_move_dir(texto_t *txt)
 {
-	/* ATENÇÃO: apenas exemplo. Mudar implementação */
-	txt->colcur++;
+	if(txt->colcur<strlen(lista_busca(txt->linhas,txt->lincur+1)->linha)) txt->colcur++;
+    else if(txt->lincur<txt->nlin-1){
+        txt->lincur++;
+        txt->colcur = 0;
+    }
 }
 
 void texto_move_baixo(texto_t *txt)
 {
-	/* ATENÇÃO: apenas exemplo. Mudar implementação */
-	txt->lincur++;
+	
 }
 
 void texto_move_cima(texto_t *txt)
