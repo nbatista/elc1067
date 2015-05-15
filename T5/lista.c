@@ -29,3 +29,47 @@
 #include "memo.h"
 
 /* implementa aqui sua estrutura lista_t duplamente encadeada */
+
+lista_t * lista_inicia(void){
+    lista_t * l = (lista_t *)memo_aloca(sizeof(lista_t));
+
+    l->primeira = NULL;
+    l->ultima = NULL;
+    l->n = 0;
+
+    return l;
+}
+
+lista_t * lista_insere(lista_t *l){
+    if(l->primeira==NULL){
+        l->primeira = elem_inicia();
+        l->n++;
+
+        return l;
+    }
+}
+
+elem_t * elem_inicia(void){
+    elem_t * e = (elem_t *)memo_aloca(sizeof(elem_t));
+
+    e->anterior  = NULL;
+    e->proxima  = NULL;
+    e->linha = NULL;
+
+    return e;
+}
+
+void lista_destroi(lista_t *l){
+    elem_destroi(l->pri);
+    memo_libera(l);
+}
+
+void elem_destroi(elem_t * ini){
+    elem_t * aux;
+    while(ini!=NULL){
+        aux = ini->prox;
+        if(ini->linha!=NULL) memo_libera(ini->linha);
+        memo_libera(ini);
+        ini = aux;
+    }
+}

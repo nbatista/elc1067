@@ -134,6 +134,34 @@ void texto_atualiza_tela(texto_t *txt)
 	tela_espera(30);
 }
 
+// função texto salva 
+void texto_salvar(texto_t *txt,char * nome_do_arquivo){
+	for(;texto->ant != NULL;texto = texto->ant);
+	unsigned int i;
+	for(i = 0;nome_do_arquivo[i] != '\0';++i){
+		if(nome_do_arquivo[i] == '\n'){
+			nome_do_arquivo[i] = '\0';
+			break;
+		}
+	}
+	FILE * arquivo = fopen(nome_do_arquivo,"w");
+	if(arquivo == NULL){
+		return;
+	}
+	for(;texto != NULL;texto = texto->pro){
+		fputc(texto->letra,arquivo);
+	}
+	fputc('\n',arquivo);
+	fclose(arquivo);
+}
+
+// fun~ção para sair e salvar 
+void sair(){
+ endwin();
+ texto_salvar(fluxo,"arquivo.txt");
+ texto_apagar(fluxo);
+}
+
 bool texto_processa_comandos(texto_t* txt)
 {
 	int tecla = tela_tecla(texto_tela(txt));
@@ -141,10 +169,13 @@ bool texto_processa_comandos(texto_t* txt)
 	/* apertou CRTL + Q ? */
 	if( tecla == ALLEGRO_KEY_Q && (modificador & ALLEGRO_KEYMOD_CTRL) ) {
 		printf("CTRL+Q SAIR\n");
+		void sair();
 		return false;
 	}
 	if( tecla == ALLEGRO_KEY_S && (modificador & ALLEGRO_KEYMOD_CTRL) ) {
 		printf("CTRL+S SALVAR e PARAR DE EDITAR\n");
+		// função texto salva 
+		void texto_salvar(texto_t *txt,char * nome_do_arquivo);
 		/* muda estado na variÃ¡vel para nÃ£o editar */
 		estado = nada;
 	}
@@ -195,4 +226,5 @@ void texto_move_cima(texto_t *txt)
 	/* ATENÃ‡ÃƒO: apenas exemplo. Mudar implementaÃ§Ã£o */
 	txt->lincur--;
 }
+
 

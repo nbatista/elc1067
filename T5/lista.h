@@ -30,9 +30,16 @@
 #include <stdlib.h>
 #include "memo.h"
 
-typedef struct _lista {
-	/* */
+
+typedef struct lista{
+    int info;
+	struct lista* ant;
+	struct lista* prox;
 } lista_t;
+
+lista_t* lst_cria (void);
+llista_t* lst2_insere (lista_t* l, int v);
+
 
 /* implementa aqui sua estrutura lista_t duplamente encadeada */
 
