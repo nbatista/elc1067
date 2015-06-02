@@ -26,8 +26,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+#include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <unistd.h>
+
+//#include "pilha.h"
+//#include "arv.h"
 
 /* enumerador para operador ou operando */
 typedef enum {OPERADOR, OPERANDO} op_tipo_t;
@@ -49,6 +54,10 @@ typedef struct _arv {
 	/* o tipo do nó será operador ou operando */
 	op_t dado;
 } arv_t;
+
+
+/* criar uma árvore vazia */
+int arv_vazia (arv_t* arv);
 
 /* criar uma árvore com o operador ou operando */
 arv_t* arv_cria(op_t op);

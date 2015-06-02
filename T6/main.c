@@ -1,13 +1,10 @@
-#ifndef _PILHA_H_
-#define _PILHA_H_
 /*
- * pilha.h
- * TAD que implementa uma fila de elementos do tipo pilha.
+ * principal.c
+ * Implementação de árvore de expressões aritméticas.
  *
  * The MIT License (MIT)
  * 
- * Copyright (c) 2014, 2015 João V. Lima, UFSM
- *               2005       Benhur Stein, UFSM
+ * Copyright (c) 2014, 2015 João V. F. Lima, UFSM
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,42 +24,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <unistd.h>
 
-//#include "pilha.h"
 #include "arv.h"
-#define N 100
+#include "pilha.h"
+#include "memo.h"
 
-/* definicao do tipo pilha
- * a pilha armazena nós da árvore, sendo um operador ou operando.
- */
-typedef struct {
-	int n; /* vet[n]: primeira posi��o livre do vetor */
-	op_t vet[N]; /* vet[n-1]: topo da pilha */
-/* vet[0] a vet[N-1]: posi��es ocup�veis */
-} pilha_t;
+int main(int argc, char **argv)
+{
 
-/* funções que permitem realizar operações sobre uma pilha */
-/* retorna uma nova pilha, vazia */
-pilha_t *pilha_cria(void);
 
-/* destrói a pilha p, que deverá estar vazia. */
-void pilha_destroi(pilha_t* p);
+	arv_t* raiz;
+	pilha_t* pilha;
+	pilha = pilha_cria();
+	op_t n1, n2, op;
+	char y;
 
-/* retorna true se a pilha p estiver vazia. */
-bool pilha_vazia(pilha_t* p);
 
-/* insere o dado arv do tipo arv_t na pilha p */
-//void pilha_insere(pilha_t* p, arv_t* arv);
 
-/* remove e retorna o nó operador/operando no topo da pilha */
-op_t pilha_remove(pilha_t* p);
-//arv_t* pilha_remove(pilha_t p);
+	printf("Digite a expressao na forma: x x * 2 + x 1 + /  = ((x * x) + 2)/(x + 1) \n");
+	do{
+		printf("\nPara SAIR Digite  -1 ");
 
-/* retorna true se p for uma pilha válida */
-bool pilha_valida(pilha_t p);
+		printf("\nDigite um operando ou operador: ");
+		scanf("%s",y);
+		if((y!= '/')||(y!='*')||(y!='+')||(y!='-')){
+				op.u.operando= y; 
+				pilha_insere( pilha, op );
+		}
+		else{
+			op.u.operador= y;
+			raiz = arv_cria( op );
+			n1=pilha_remove(pilha);
+			raiz = arv_insere_esquerda( raiz, n1 );
+			n2=pilha_remove(pilha);
+			raiz = arv_insere_direita( raiz, n2 );
+			pilha_insere( pilha, op );
+		}
+	
+				
+	}while( y != -1  );
 
-#endif
+	printf("\n Pre ordem :  ");
+	arv_imprime_pre_ordem(raiz);
+	printf("\n Em ordem :  ");
+	arv_imprime_em_ordem(raiz);
+	printf("\n Pos ordem :  ");
+	arv_imprime_pos_ordem(raiz);
+
+	printf("\n");
+	arv_destroi( raiz );
+	pilha_destroi(pilha);
+	memo_relatorio();
+	return 0;
+}
