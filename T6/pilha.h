@@ -56,11 +56,10 @@ void pilha_destroi(pilha_t* p);
 bool pilha_vazia(pilha_t* p);
 
 /* insere o dado arv do tipo arv_t na pilha p */
-//void pilha_insere(pilha_t* p, arv_t* arv);
+void pilha_insere(pilha_t* p, arv_t* arv);
 
 /* remove e retorna o nó operador/operando no topo da pilha */
-op_t pilha_remove(pilha_t* p);
-//arv_t* pilha_remove(pilha_t p);
+arv_t* pilha_remove(pilha_t p);
 
 /* retorna true se p for uma pilha válida */
 bool pilha_valida(pilha_t p);

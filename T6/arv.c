@@ -7,35 +7,19 @@
 #include "arv.h"
 
 
-arv_t* arv_insere_esquerda(arv_t* arv, op_t op)
+arv_t* arv_insere_esquerda(arv_t* arv, arv_t* p))
 {
-	
-	if (arv==NULL){
-		arv_t* arv=(arv_t*)malloc(sizeof(arv_t));
-		arv->dado = op;
-		arv->esq = NULL;
-	}
-	else{
-		arv->esq = NULL;
-	}
-	
+
+		arv->esq = p;
 	return arv;
 }
 
 
 
-arv_t* arv_insere_direita(arv_t* arv, op_t op)
+arv_t* arv_insere_direita(arv_t* arv, arv_t* p)
 {
-	
-	if (arv==NULL){
-		arv_t* arv=(arv_t*)malloc(sizeof(arv_t));
-		arv->dado = op;
-		arv->dir = NULL;
-	}
-	else{
-		arv->dir = NULL;
-	}
-	
+
+		arv->dir = p;	
 	return arv;
 }
 

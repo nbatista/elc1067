@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "pilha.h"
-#include "arv.h"
+#include "memo.h"
 
 pilha_t *pilha_cria(void){
 	pilha_t* p = (pilha_t*) malloc(sizeof(pilha_t));
@@ -26,10 +26,9 @@ void pilha_insere(pilha_t* p, arv_t* arv){
 
 }
 
-op_t pilha_remove(pilha_t* p)
-//arv_t* pilha_remove(pilha_t p)
+arv_t* pilha_remove(pilha_t* p)
 {
-	op_t v;
+	arv_t* v;
 	if (pilha_vazia(p)) { printf("Pilha vazia.\n");
 		exit(1); } /* aborta programa */
 	/* retira elemento do topo */
@@ -46,7 +45,7 @@ bool pilha_vazia(pilha_t* p){
 
 void pilha_destroi(pilha_t* p){
 
-	free (p);
+	memo_libera(p);
 
 }
 

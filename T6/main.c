@@ -39,10 +39,12 @@ int main(int argc, char **argv)
 
 
 	arv_t* raiz;
+	arv_t* n1;
 	pilha_t* pilha;
 	pilha = pilha_cria();
-	op_t n1, n2, op;
-	char y;
+	op_t op;
+	char* y = (char*) memo_aloca(sizeof(char));
+	double z;
 
 
 
@@ -53,28 +55,32 @@ int main(int argc, char **argv)
 		printf("\nDigite um operando ou operador: ");
 		scanf("%s",y);
 		if((y!= '/')||(y!='*')||(y!='+')||(y!='-')){
-				op.u.operando= y; 
+				z = atof(y);
+				op.tipo = OPERANDO;
+				op.u.operando= z; 
 				pilha_insere( pilha, op );
 		}
 		else{
+			op.tipo = OPERADOR;
 			op.u.operador= y;
 			raiz = arv_cria( op );
-			n1=pilha_remove(pilha);
-			raiz = arv_insere_esquerda( raiz, n1 );
-			n2=pilha_remove(pilha);
-			raiz = arv_insere_direita( raiz, n2 );
-			pilha_insere( pilha, op );
+			n1 = pilha_remove(pilha);
+			arv_insere_esquerda( raiz, n1 );
+			n1 = pilha_remove(pilha);
+			arv_insere_direita( raiz, n1 );
+		
 		}
 	
-				
-	}while( y != -1  );
-
+		pilha_insere( pilha, op );			
+	}while( y != '-1'  );
+	
+	n1 = pilha_remove(pilha);
 	printf("\n Pre ordem :  ");
-	arv_imprime_pre_ordem(raiz);
+	arv_imprime_pre_ordem(n1);
 	printf("\n Em ordem :  ");
-	arv_imprime_em_ordem(raiz);
+	arv_imprime_em_ordem(n1);
 	printf("\n Pos ordem :  ");
-	arv_imprime_pos_ordem(raiz);
+	arv_imprime_pos_ordem(n1);
 
 	printf("\n");
 	arv_destroi( raiz );
