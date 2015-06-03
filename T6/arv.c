@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "pilha.h"
+#include "memo.h"
 #include "arv.h"
 
 
@@ -28,9 +28,8 @@ void arv_destroi(arv_t* arv){
 	if (!arv_vazia(arv)){
 		arv_destroi(arv->esq); /* libera sae */
 		arv_destroi(arv->dir); /* libera sad */
-		free(arv); /* libera raiz */
+	memo_libera(arv); /* libera raiz */
 	}
-	return NULL;
 }
 arv_t* arv_cria(op_t op)
 {
