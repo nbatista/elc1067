@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 	op_t op;
 	char* y = (char*) memo_aloca(sizeof(char));
 	double z;
-
+	char variavel[1];
 
 
 	printf("Digite a expressao na forma: x x * 2 + x 1 + /  = ((x * x) + 2)/(x + 1) \n");
@@ -71,9 +71,9 @@ int main(int argc, char **argv)
 			raiz=arv_insere_direita( raiz, n1 );
 			pilha_insere( pilha, raiz );		
 		}
-	
-					
-	}while( y != 'x'  );
+	printf("\nDigite s de SIM para Sair ou n de NAO para nao Sair\n");
+	scanf("%s",variavel);
+	}while( variavel[0] != 's' );
 	
 	n1 = pilha_remove(pilha);
 	printf("\n Pre ordem :  ");
