@@ -50,8 +50,6 @@ int main(int argc, char **argv)
 
 	printf("Digite a expressao na forma: x x * 2 + x 1 + /  = ((x * x) + 2)/(x + 1) \n");
 	do{
-		printf("\nPara SAIR Digite  x ");
-
 		printf("\nDigite um operando ou operador: ");
 		scanf("%s",y);
 		if((y[0]!= '/')&&(y[0]!='*')&&(y[0]!='+')&&(y[0]!='-')){
