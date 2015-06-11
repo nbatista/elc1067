@@ -2,9 +2,9 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <unistd.h>
-
-#include "memo.h"
 #include "arv.h"
+#include "pilha.h"
+#include "memo.h"
 
 
 arv_t* arv_insere_esquerda(arv_t* arv, arv_t* p))

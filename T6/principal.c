@@ -50,29 +50,30 @@ int main(int argc, char **argv)
 
 	printf("Digite a expressao na forma: x x * 2 + x 1 + /  = ((x * x) + 2)/(x + 1) \n");
 	do{
-		printf("\nPara SAIR Digite  -1 ");
+		printf("\nPara SAIR Digite  x ");
 
 		printf("\nDigite um operando ou operador: ");
 		scanf("%s",y);
-		if((y!= '/')||(y!='*')||(y!='+')||(y!='-')){
-				z = atof(y);
+		if((y[0]!= '/')&&(y[0]!='*')&&(y[0]!='+')&&(y[0]!='-')){
+				z = atof(&y[0]);
 				op.tipo = OPERANDO;
 				op.u.operando= z; 
-				pilha_insere( pilha, op );
+				raiz = arv_cria( op );
+				pilha = pilha_insere( pilha, raiz );
 		}
-		else{
+		else if((y[0]!= '/')||(y[0]!='*')||(y[0]!='+')||(y[0]!='-')){
 			op.tipo = OPERADOR;
-			op.u.operador= y;
+			op.u.operador= y[0];
 			raiz = arv_cria( op );
 			n1 = pilha_remove(pilha);
-			arv_insere_esquerda( raiz, n1 );
+			raiz=arv_insere_esquerda( raiz, n1 );
 			n1 = pilha_remove(pilha);
-			arv_insere_direita( raiz, n1 );
-		
+			raiz=arv_insere_direita( raiz, n1 );
+			pilha = pilha_insere( pilha, raiz );		
 		}
 	
-		pilha_insere( pilha, op );			
-	}while( y != '-1'  );
+					
+	}while( y != 'x'  );
 	
 	n1 = pilha_remove(pilha);
 	printf("\n Pre ordem :  ");

@@ -39,10 +39,13 @@
 /* definicao do tipo pilha
  * a pilha armazena nÃ³s da Ã¡rvore, sendo um operador ou operando.
  */
-typedef struct {
-	int n; /* vet[n]: primeira posição livre do vetor */
-	op_t vet[N]; /* vet[n-1]: topo da pilha */
-/* vet[0] a vet[N-1]: posições ocupáveis */
+typedef struct _fila{
+	arv_t * arv;
+	struct _fila* prox;
+}fila;
+
+typedef struct _pilha{
+    fila * n;
 } pilha_t;
 
 /* funÃ§Ãµes que permitem realizar operaÃ§Ãµes sobre uma pilha */
