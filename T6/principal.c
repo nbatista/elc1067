@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 				raiz = arv_cria( op );
 				pilha_insere( pilha, raiz );
 		}
-		else if((y[0]!= '/')||(y[0]!='*')||(y[0]!='+')||(y[0]!='-')){
+		else if((y[0]== '/')||(y[0]=='*')||(y[0]=='+')||(y[0]=='-')){
 			op.tipo = OPERADOR;
 			op.u.operador= y[0];
 			raiz = arv_cria( op );
