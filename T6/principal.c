@@ -66,13 +66,13 @@ int main(int argc, char **argv)
 			op.u.operador= y[0];
 			raiz = arv_cria( op );
 			n1 = pilha_remove(pilha);
-			raiz=arv_insere_esquerda( raiz, n1 );
-			n1 = pilha_remove(pilha);
 			raiz=arv_insere_direita( raiz, n1 );
+			n1 = pilha_remove(pilha);
+			raiz=arv_insere_esquerda( raiz, n1 );
 			pilha_insere( pilha, raiz );		
 		}
-	printf("\nDigite s de SIM para Sair ou n de NAO para nao Sair\n");
-	scanf("%s",variavel);
+	printf("\n			Digite s de SIM para Sair ou n de NAO para nao Sair\n");
+	scanf("					%s",variavel);
 	}while( variavel[0] != 's' );
 	
 	n1 = pilha_remove(pilha);
