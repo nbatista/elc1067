@@ -39,13 +39,13 @@
 /* definicao do tipo pilha
  * a pilha armazena nós da árvore, sendo um operador ou operando.
  */
-typedef struct _fila{
-	arv_t * arv;
-	struct _fila* prox;
-}fila;
+typedef struct lista{
+	arv_t * ar;
+	struct lista* prox;
+}Lista;
 
 typedef struct _pilha{
-    fila * n;
+    Lista * n;
 } pilha_t;
 
 /* funções que permitem realizar operações sobre uma pilha */
@@ -62,7 +62,7 @@ bool pilha_vazia(pilha_t* p);
 void pilha_insere(pilha_t* p, arv_t* arv);
 
 /* remove e retorna o nó operador/operando no topo da pilha */
-arv_t* pilha_remove(pilha_t p);
+arv_t* pilha_remove(pilha_t* p);
 
 /* retorna true se p for uma pilha válida */
 bool pilha_valida(pilha_t p);

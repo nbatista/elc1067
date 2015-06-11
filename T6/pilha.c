@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <unistd.h>
+#include "arv.h"
 #include "pilha.h"
 #include "memo.h"
 
@@ -14,27 +15,23 @@ pilha_t *pilha_cria(void){
 
 
 void pilha_insere(pilha_t* p, arv_t* arv){
-	if (p->n == N) { /* capacidade esgotada */
-		printf("Capacidade da pilha estourou.\n");
-		system ("pause");
-		exit(1); /* aborta programa */
-	return (0);
-	}
-	/* insere elemento na próxima posição livre */
-	p->vet[p->n] = arv->dado;
-	p->n++;
+	Lista *q = (Lista*)memo_aloca(sizeof(Lista));
+	q->ar=arv;
+	q->prox=p->n;
+	p->n=q;
 
 }
 
 arv_t* pilha_remove(pilha_t* p)
-{
-	arv_t* v;
-	if (pilha_vazia(p)) { printf("Pilha vazia.\n");
-		exit(1); } /* aborta programa */
-	/* retira elemento do topo */
-	v = p->vet[p->n-1];
-	p->n--;
-	return v;
+{	
+	arv_t *galho;
+	Lista *m;
+	m = p->n;
+	p->n = m->prox;
+	galho = m->ar;
+	memo_libera(m);
+	
+	return galho;
 }
 
 
@@ -48,3 +45,5 @@ void pilha_destroi(pilha_t* p){
 	memo_libera(p);
 
 }
+
+
