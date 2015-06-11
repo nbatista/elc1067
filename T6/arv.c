@@ -7,7 +7,7 @@
 #include "memo.h"
 
 
-arv_t* arv_insere_esquerda(arv_t* arv, arv_t* p))
+arv_t* arv_insere_esquerda(arv_t* arv, arv_t* p)
 {
 
 		arv->esq = p;
@@ -33,7 +33,7 @@ void arv_destroi(arv_t* arv){
 }
 arv_t* arv_cria(op_t op)
 {
-	arv_t* p=(arv_t*)malloc(sizeof(arv_t));
+	arv_t* p=(arv_t*)memo_aloca(sizeof(arv_t));
 	p->dado = op;
 	p->esq = NULL;
 	p->dir = NULL;
@@ -47,7 +47,10 @@ int arv_vazia (arv_t* arv)
 void arv_imprime_pre_ordem(arv_t* arv)
 {
 	if (!arv_vazia(arv)){
-		printf("%c ", arv->dado); /* mostra raiz */
+		if(arv->dado.tipo == OPERANDO)
+            printf(" %.0f ", arv->dado.u.operando);
+		else
+			printf("%c ", arv->dado.u.operador); /* mostra raiz */
 		arv_imprime_pre_ordem(arv->esq); /* mostra sae */
 		arv_imprime_pre_ordem(arv->dir); /* mostra sad */
 	}
@@ -57,7 +60,10 @@ void arv_imprime_pos_ordem(arv_t* arv)
 	if (!arv_vazia(arv)){
 		arv_imprime_pos_ordem(arv->esq); /* mostra sae */
 		arv_imprime_pos_ordem(arv->dir); /* mostra sad */
-		printf("%c ", arv->dado); /* mostra raiz */
+		if(arv->dado.tipo == OPERANDO)
+            printf(" %.0f ", arv->dado.u.operando);
+        else
+            printf(" %c ", arv->dado.u.operador); /* mostra raiz */
 
 	}
 }
@@ -67,9 +73,14 @@ void arv_imprime_em_ordem(arv_t* arv)
 	if (!arv_vazia(arv)){
 		arv_imprime_em_ordem(arv->esq); /* mostra sae */
 
-		printf("%c ", arv->dado); /* mostra raiz */
+		if(arv->dado.tipo == OPERANDO)
+            printf(" %.0f ", arv->dado.u.operando);
+        else
+            printf(" %c ", arv->dado.u.operador);
+/* mostra raiz */
 		arv_imprime_em_ordem(arv->dir); /* mostra sad */
 
 	}
 }
+
 
