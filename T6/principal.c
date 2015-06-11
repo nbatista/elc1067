@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 				op.tipo = OPERANDO;
 				op.u.operando= z; 
 				raiz = arv_cria( op );
-				pilha = pilha_insere( pilha, raiz );
+				pilha_insere( pilha, raiz );
 		}
 		else if((y[0]!= '/')||(y[0]!='*')||(y[0]!='+')||(y[0]!='-')){
 			op.tipo = OPERADOR;
@@ -69,7 +69,7 @@ int main(int argc, char **argv)
 			raiz=arv_insere_esquerda( raiz, n1 );
 			n1 = pilha_remove(pilha);
 			raiz=arv_insere_direita( raiz, n1 );
-			pilha = pilha_insere( pilha, raiz );		
+			pilha_insere( pilha, raiz );		
 		}
 	
 					
@@ -77,11 +77,11 @@ int main(int argc, char **argv)
 	
 	n1 = pilha_remove(pilha);
 	printf("\n Pre ordem :  ");
-	arv_imprime_pre_ordem(n1);
+	arv_imprime_pre_ordem(raiz);
 	printf("\n Em ordem :  ");
-	arv_imprime_em_ordem(n1);
+	arv_imprime_em_ordem(raiz);
 	printf("\n Pos ordem :  ");
-	arv_imprime_pos_ordem(n1);
+	arv_imprime_pos_ordem(raiz);
 
 	printf("\n");
 	arv_destroi( raiz );
