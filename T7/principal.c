@@ -33,6 +33,7 @@
 #include "arv.h"
 #include "pilha.h"
 #include "memo.h"
+#include "calc.h"
 
 int main(int argc, char **argv)
 {
@@ -80,6 +81,8 @@ int main(int argc, char **argv)
 	arv_imprime_em_ordem(raiz);
 	printf("\n Pos ordem :  ");
 	arv_imprime_pos_ordem(raiz);
+	
+	printf("\nA resposta da operacao eh: %.2f ",calcula(raiz));
 
 	printf("\n");
 	arv_destroi( raiz );
@@ -87,3 +90,4 @@ int main(int argc, char **argv)
 	memo_relatorio();
 	return 0;
 }
+
